@@ -1,8 +1,7 @@
 [ :map ([a] (a -- b) -- [b])
    [ over
      [ drop drop [] ]
-    [ swap dup car rot tuck call swap rot cdr swap map ;swap drop swap drop
-     swap cons ]
+    [ swap dup car rot tuck call swap rot cdr swap map swap cons ]
      rot
      empty? if ] define,
 
