@@ -30,7 +30,7 @@ running
 -------
 
 ```
-cat examples | lein run
+cat examples/map.reductor | lein run
 ```
 
 test
