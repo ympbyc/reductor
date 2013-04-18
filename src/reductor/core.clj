@@ -32,9 +32,6 @@
               (trampoline call (words (keyword x)) stack words)
               words)
 
-     (and (coll? x) (empty? x)) ;=>
-     #(reduct xs (cons x stack) words)
-
      (coll? x) ;=>
      #(reduct xs (cons x stack) words))))
 
