@@ -11,9 +11,9 @@
 
 (defn reduct
   [[x & xs :as quot] stack words]
-  ;;(println stack)
-  ;;(println "")
-  ;;(println x)
+  (println stack)
+  (println "")
+  (println x)
   (if (empty? quot)
     {:stack stack
      :words words}
