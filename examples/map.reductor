@@ -1,8 +1,11 @@
-[ :map ([a] (a -- b) -- [b])
+[ :square (int -- int)
+   [ 2 * ] define,
+
+  :map ([a] (a -- b) -- [b])
    [ over
      [ drop drop [] ]
      [ over car over call swap rot cdr swap map swap cons ]
      rot
      empty? if ] define,
 
-   [ 1 2 3 4 5 ] [ 2 * ] map . ]
+   [ 1 2 3 4 5 ] [ square ] map . ]
