@@ -49,9 +49,9 @@
                                      :dip (fn [[x y & xs] ws]
                                             (cons y (trampoline call x xs ws)))
                                      :if (fn [[x y z & xs] ws]
-                                           (if (= x :true)
-                                             (trampoline call z xs ws)
-                                             (trampoline call y xs ws)))}))
+                                           (if (= z :true)
+                                             (trampoline call y xs ws)
+                                             (trampoline call x xs ws)))}))
 
 (defn -main [& _]
   ((trampoline reduct (read) [] dictionary) :stack))
