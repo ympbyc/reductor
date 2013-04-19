@@ -8,11 +8,10 @@ A toy language that shows how easy it is to implement a powerful concatenative l
    [ 2 * ] define,
 
   :map ([a] (a -- b) -- [b])
-   [ over
+   [ over empty?
      [ drop drop [] ]
      [ over car over call swap rot cdr swap map swap cons ]
-     rot
-     empty? if ] define,
+     if ] define,
 
    [ 1 2 3 4 5 ] [ square ] map . ]
 ```
