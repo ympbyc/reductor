@@ -9,9 +9,12 @@
 
 (declare reduct call)
 
+(defn visualize [stack]
+  (apply str (map (fn [_] "|") stack)))
+
 (defn reduct
   [[x & xs :as quot] stack words]
-  ;;(println stack)
+  (println (visualize stack))
   ;;(println "")
   ;;(println x)
   (if (empty? quot)

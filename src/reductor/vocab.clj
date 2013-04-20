@@ -1,5 +1,19 @@
 (ns reductor.vocab)
 
+(defn arith [f]
+  (fn [[x y & xs] _]
+    (cons (f y x) xs)))
+
+(defn pred [f]
+  (fn [[x & xs] _]
+    (cons (if (f x) :true :false)
+          xs)))
+
+(defn arith-pred [f]
+  (fn [[x y & xs] _]
+    (cons (if (f y x) :true :false)
+          xs)))
+
 (def prelude {:swap (fn [[x y & xs] ws]
                       (concat (list y x) xs))
               :rot (fn [[x y z & xs] ws]
@@ -19,8 +33,17 @@
               :cons (fn [[x y & xs] ws]
                       (cons (cons x y) xs))
 
-              :empty? (fn [[x & xs] ws]
-                        (cons (if (empty? x) :true :false)
-                              xs))
+              :empty? (pred empty?)
+              :quot?  (pred coll?)
 
-              :* (fn [[x y & xs] _] (cons (* x y) xs))})
+              :+ (arith +)
+              :- (arith -)
+              :div (arith /)
+              :* (arith *)
+              :< (arith-pred <)
+              :> (arith-pred >)
+              := (arith-pred =)
+
+              :print (fn [[x & xs] _] 
+                       (println x)
+                       xs)})
