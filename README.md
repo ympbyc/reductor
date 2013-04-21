@@ -4,7 +4,7 @@ reductor
 A toy language that shows how easy it is to implement a powerful concatenative language, and nothing more.
 
 ```factor
-[ :square (int -- int)
+[ :double (int -- int)
    [ 2 * ] define,
 
   :map ([a] (a -- b) -- [b])
@@ -13,7 +13,7 @@ A toy language that shows how easy it is to implement a powerful concatenative l
      [ over car over call swap rot cdr swap map swap cons ]
      if ] define,
 
-   [ 1 2 3 4 5 ] [ square ] map . ]
+   [ 1 2 3 4 5 ] [ double ] map . ]
 ```
 
 install

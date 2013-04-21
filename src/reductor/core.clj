@@ -14,7 +14,7 @@
 
 (defn reduct
   [[x & xs :as quot] stack words]
-  (println (visualize stack))
+  ;;(println (visualize stack))
   ;;(println "")
   ;;(println x)
   (if (empty? quot)
@@ -31,7 +31,7 @@
               (conj words {(-> stack rest rest first) (first stack)}))
 
      (symbol? x) ;=>
-     (let [stk (trampoline call (words (keyword x)) stack words)] 
+     (let [stk (trampoline call (words (keyword x)) stack words)]
       (if (empty? xs)
         {:stack stk :words words} ;tail call?
         #(reduct xs stk words)))
