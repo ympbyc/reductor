@@ -9,7 +9,7 @@ A toy language that shows how easy it is to implement a powerful concatenative l
 
   :map ([a] (a -- b) -- [b])
    [ over empty?
-     [ drop drop [] ]
+     [ drop ]
      [ over car over call swap rot cdr swap map swap cons ]
      if ] define,
 

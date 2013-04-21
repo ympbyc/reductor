@@ -3,7 +3,7 @@
 
   :map ([a] (a -- b) -- [b])
    [ over empty?
-     [ drop drop [] ]
+     [ drop ]
      [ over car over call swap rot cdr swap map swap cons ]
      if ] define,
 
