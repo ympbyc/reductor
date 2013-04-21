@@ -1,0 +1,15 @@
+[ :mapTailRev ([b] [a] (a -- b) -- [b])
+    [ over empty?
+      [ drop drop ]
+      [ over car over call rot [ swap [ cons ] dip ] dip cdr swap mapTailRev ] 
+      if ] define,
+
+  [] [ 1 2 3 4 5 ] [2 *] mapTailRev ]
+
+;[] [1 2 3] [2 *] map
+;[] [1 2 3] [2 *] over car
+;[] [1 2 3] [2 *] 1 over
+;[] [1 2 3] [2 *] 1 [2 *] call
+;[] [1 2 3] [2 *] 2 rot
+;[] [2 *] 2 [1 2 3]  [ swap [ cons ] dip ] dip
+;[2] [2 *] [1 2 3] cdr swap map

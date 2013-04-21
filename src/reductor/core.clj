@@ -31,9 +31,10 @@
               (conj words {(-> stack rest rest first) (first stack)}))
 
      (symbol? x) ;=>
-     #(reduct xs
-              (trampoline call (words (keyword x)) stack words)
-              words)
+     (let [stk (trampoline call (words (keyword x)) stack words)] 
+      (if (empty? xs)
+        {:stack stk :words words} ;tail call?
+        #(reduct xs stk words)))
 
      (coll? x) ;=>
      #(reduct xs (cons x stack) words))))
