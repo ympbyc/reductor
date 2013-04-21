@@ -11,8 +11,3 @@
      if ] define,
 
    [ 1 2 3 4 5 ] [ double ] map . ]
-
-;[1 2 3] [2 *] map
-;[1 2 3] [2 *]  [[car] [cdr] bi] dip
-;1 [2 3] [2 *] tuck
-;1 [2 *] [2 3] [2 *] map swap cons

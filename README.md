@@ -3,14 +3,17 @@ reductor
 
 A toy language that shows how easy it is to implement a powerful concatenative language, and nothing more.
 
-```factor
-[ :double (int -- int)
+```clojure
+[ "examples/quot.reductor" load,
+
+  :double (int -- int)
    [ 2 * ] define,
 
   :map ([a] (a -- b) -- [b])
    [ over empty?
      [ drop ]
-     [ over car over call swap rot cdr swap map swap cons ]
+     [ [ [ car ] [ cdr ] bi ] dip
+       tuck map [call] dip swap cons ]
      if ] define,
 
    [ 1 2 3 4 5 ] [ double ] map . ]
