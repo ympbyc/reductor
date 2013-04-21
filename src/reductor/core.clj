@@ -31,7 +31,9 @@
               (conj words {(-> stack rest rest first) (first stack)}))
 
      (symbol? x) ;=>
-     (let [stk (trampoline call (words (keyword x)) stack words)]
+     (let [word (words (keyword x))
+           _  (if (nil? word) (throw (Throwable. (str "unresoleved symbol " x))))
+           stk (trampoline call word stack words)]
       (if (empty? xs)
         {:stack stk :words words} ;tail call?
         #(reduct xs stk words)))
