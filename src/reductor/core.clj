@@ -7,7 +7,7 @@
       (string? x)
       (keyword? x)))
 
-(declare reduct call)
+(declare reduct call dictionary)
 
 (defn visualize [stack]
   (apply str (map (fn [_] "|") stack)))
@@ -29,6 +29,13 @@
      #(reduct xs
               (drop 3 stack)
               (conj words {(-> stack rest rest first) (first stack)}))
+
+     (= x 'load) ;=>
+     #(reduct xs
+              (drop 1 stack)
+              ((trampoline reduct
+                           (read-string (slurp (first stack)))
+                           [] dictionary) :words))
 
      (symbol? x) ;=>
      (let [word (words (keyword x))

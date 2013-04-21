@@ -1,0 +1,5 @@
+[ :bi (a (a -- b) (a -- c) -- b c)
+ [[over swap call swap] dip call] define
+
+  :bi* (a b (a -- c) (b -- d) -- c d)
+ [[rot swap call swap] dip call] define]

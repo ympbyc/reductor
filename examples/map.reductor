@@ -1,10 +1,18 @@
-[ :double (int -- int)
+[ "examples/quot.reductor" load,
+
+  :double (int -- int)
    [ 2 * ] define,
 
   :map ([a] (a -- b) -- [b])
    [ over empty?
      [ drop ]
-     [ over car over call swap rot cdr swap map swap cons ]
+     [ [ [ car ] [ cdr ] bi ] dip
+       tuck map [call] dip swap cons ]
      if ] define,
 
    [ 1 2 3 4 5 ] [ double ] map . ]
+
+;[1 2 3] [2 *] map
+;[1 2 3] [2 *]  [[car] [cdr] bi] dip
+;1 [2 3] [2 *] tuck
+;1 [2 *] [2 3] [2 *] map swap cons

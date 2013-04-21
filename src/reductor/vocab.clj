@@ -44,6 +44,6 @@
               :> (arith-pred >)
               := (arith-pred =)
 
-              :print (fn [[x & xs] _] 
+              :print (fn [[x & xs] _]
                        (println x)
                        xs)})
